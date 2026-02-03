@@ -1,6 +1,17 @@
-def reverse_num(n, rev=0):
-    if n == 0:
-        return rev
-    return reverse_num(n // 10, rev * 10 + n % 10)
+"""Reverse a number using recursion."""
 
-print(reverse_num(1234))
+
+def reverse_num(n: int) -> int:
+    """Return the digits of ``n`` reversed using recursion."""
+    def _reverse(remaining: int, rev: int) -> int:
+        if remaining == 0:
+            return rev
+        return _reverse(remaining // 10, rev * 10 + remaining % 10)
+
+    sign = -1 if n < 0 else 1
+    return sign * _reverse(abs(n), 0)
+
+
+if __name__ == "__main__":
+    value = 1234
+    print(reverse_num(value))
